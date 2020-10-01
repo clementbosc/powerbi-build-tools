@@ -21,8 +21,9 @@ Try
 
 	$Files = Get-ChildItem -Path $Path
 	foreach ($File in $Files)
-	{		
-		$GroupId = Get-PowerBIGroup -Group $group -Id
+	{	
+		$GroupName = [System.Web.HTTPUtility]::UrlEncode($group)
+		$GroupId = Get-PowerBIGroup -Group $GroupName -Id
 
 		$Import = New-PowerBIImport -Group $GroupId -File $File -ConnectionStrings $ConnectionStrings
 
